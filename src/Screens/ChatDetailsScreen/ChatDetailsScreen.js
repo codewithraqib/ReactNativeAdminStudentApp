@@ -6,7 +6,7 @@ import MyButton from '../../Components/MyButton';
 import {shippingState} from '../../Recoil/atoms';
 import dimensions from '../../utilities/dimensions';
 
-const HomeScreen = props => {
+const ChatDetailsScreen = props => {
   const [shopingItems, setShopingItems] = useRecoilState(shippingState);
 
   console.log({props});
@@ -48,4 +48,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default ChatDetailsScreen;

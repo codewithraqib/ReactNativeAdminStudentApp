@@ -30,6 +30,9 @@ import HomeScreen from './Screens/HomeScreen/HomeScreen';
 import {RecoilRoot} from 'recoil';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import StudentList from './Screens/StudentList/StudentList';
+import ProfileScreen from './Screens/ProfileScreen/ProfileScreen';
+import ChatDetailsScreen from './Screens/ChatDetailsScreen/ChatDetailsScreen';
 // import {enableScreens} from 'react-native-screens';
 
 // enableScreens();
@@ -47,9 +50,25 @@ const App = () => {
     <RecoilRoot>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
+        <Stack.Navigator
+          initialRouteName="Home"
+          screenOptions={{
+            contentStyle: {
+              backgroundColor: '#eee',
+            },
+          }}
+        >
           <Stack.Screen name="Home">
             {props => <HomeScreen {...props} extraData={'someData'} />}
+          </Stack.Screen>
+          <Stack.Screen name="StudentList">
+            {props => <StudentList {...props} extraData={'someData'} />}
+          </Stack.Screen>
+          <Stack.Screen name="ProfileScreen">
+            {props => <ProfileScreen {...props} extraData={'someData'} />}
+          </Stack.Screen>
+          <Stack.Screen name="ChatDetailsScreen">
+            {props => <ChatDetailsScreen {...props} extraData={'someData'} />}
           </Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
