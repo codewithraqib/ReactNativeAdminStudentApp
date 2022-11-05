@@ -1,8 +1,10 @@
 import React from 'react';
-
 import {View, Text} from 'react-native';
+import {useRecoilState} from 'recoil';
+import {shippingState} from '../../Recoil/atoms';
 
 const HomeScreen = () => {
+  const [shopingItems, setShopingItems] = useRecoilState(shippingState);
   return (
     <View
       style={{
@@ -12,7 +14,7 @@ const HomeScreen = () => {
         alignItems: 'center',
       }}
     >
-      <Text>Helo i am homescreen</Text>
+      <Text>{shopingItems[0].name}</Text>
     </View>
   );
 };
