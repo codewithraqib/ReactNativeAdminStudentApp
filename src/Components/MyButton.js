@@ -1,15 +1,17 @@
 import * as React from 'react';
-import {View, StyleSheet, Text, Button, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import colors from '../utilities/colors';
 import dimensions from '../utilities/dimensions';
+import MyText from './MyText';
+import MyTouchable from './MyTouchable';
 
 const MyButton = props => {
   return (
-    <TouchableOpacity onPress={() => props.onPress()}>
+    <MyTouchable onPress={() => props.onPress()}>
       <View style={styles.mainView}>
-        <Text style={styles.nameStyle}>{props.name}</Text>
+        <MyText style={styles.nameStyle}>{props.name}</MyText>
       </View>
-    </TouchableOpacity>
+    </MyTouchable>
   );
 };
 

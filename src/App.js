@@ -2,6 +2,7 @@
  *
  * Sample React Native App with Reecoil State Magement
  * https://github.com/facebook/react-native
+ * https://github.com/raqib850
  * author Raqib <codewithraqib@gmail.com>
  *
  * @format
@@ -9,23 +10,9 @@
  */
 
 import React from 'react';
-// import type {Node} from 'react';
-import {
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  useColorScheme,
-  View,
-  Text,
-} from 'react-native';
+import {StatusBar, StyleSheet, useColorScheme} from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 import HomeScreen from './Screens/HomeScreen/HomeScreen';
 import {RecoilRoot} from 'recoil';
 import {NavigationContainer} from '@react-navigation/native';
@@ -33,6 +20,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import StudentList from './Screens/StudentList/StudentList';
 import ProfileScreen from './Screens/ProfileScreen/ProfileScreen';
 import ChatDetailsScreen from './Screens/ChatDetailsScreen/ChatDetailsScreen';
+import ChatListScreen from './Screens/ChatListScreen/ChatListScreen';
 // import {enableScreens} from 'react-native-screens';
 
 // enableScreens();
@@ -61,14 +49,18 @@ const App = () => {
           <Stack.Screen name="Home">
             {props => <HomeScreen {...props} extraData={'someData'} />}
           </Stack.Screen>
-          <Stack.Screen name="StudentList">
+          <Stack.Screen name="Student List">
             {props => <StudentList {...props} extraData={'someData'} />}
           </Stack.Screen>
-          <Stack.Screen name="ProfileScreen">
+          <Stack.Screen name="Profile">
             {props => <ProfileScreen {...props} extraData={'someData'} />}
           </Stack.Screen>
-          <Stack.Screen name="ChatDetailsScreen">
+          <Stack.Screen name="Chat Details">
             {props => <ChatDetailsScreen {...props} extraData={'someData'} />}
+          </Stack.Screen>
+
+          <Stack.Screen name="Chat List">
+            {props => <ChatListScreen {...props} extraData={'someData'} />}
           </Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>

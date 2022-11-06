@@ -9,11 +9,10 @@ import {
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useRecoilState} from 'recoil';
-import apiCall from '../../api/apiCall';
-import MyButton from '../../Components/MyButton';
 import dimensions from '../../utilities/dimensions';
 import {studentDataState} from '../../Recoil/atoms';
 import colors from '../../utilities/colors';
+import BGCarpoolInnerBottom from '../../Components/BGCarpoolInnerBottom';
 
 const ProfileScreen = props => {
   const [studentData, setStudentData] = useRecoilState(studentDataState);
@@ -41,7 +40,7 @@ const ProfileScreen = props => {
 
   const RenderBodyItem = props => {
     return (
-      <TouchableOpacity onPress={() => gotoScreen(props.screen)}>
+      <TouchableOpacity onPress={() => gotoScreen(props.onPress)}>
         <View style={styles.indItem}>
           <Text style={{color: colors.whiteColor}}>{props.name}</Text>
         </View>
@@ -73,7 +72,7 @@ const ProfileScreen = props => {
         </Text>
         <Switch
           trackColor={{false: '#767577', true: colors.blueColor}}
-          thumbColor={isEnabled ? colors.primaryColor : '#f4f3f4'}
+          thumbColor={isEnabled ? colors.whiteColor : '#f4f3f4'}
           thumbSize={20}
           ios_backgroundColor="#3e3e3e"
           onValueChange={toggleSwitch}
@@ -85,27 +84,30 @@ const ProfileScreen = props => {
 
   return (
     <SafeAreaView style={styles.mainView}>
-      <View style={styles.topView}>
-        <View style={styles.avatarContainer}>
-          <View style={styles.wrapper}></View>
-          <Image source={{uri: profileData.picture}} style={styles.avatar} />
+      <BGCarpoolInnerBottom />
+      <View style={{marginHorizontal: dimensions.vw * 5}}>
+        <View style={styles.topView}>
+          <View style={styles.avatarContainer}>
+            <View style={styles.wrapper}></View>
+            <Image source={{uri: profileData.picture}} style={styles.avatar} />
 
-          <View style={styles.profileData}>
-            {renderTwoItems(
-              'Name:',
-              profileData.firstName + ' ' + profileData.lastName,
-            )}
+            <View style={styles.profileData}>
+              {renderTwoItems(
+                'Name:',
+                profileData.firstName + ' ' + profileData.lastName,
+              )}
 
-            {renderTwoItems('Class:', profileData.class)}
-            {renderTwoItems('Roll no.:', profileData.rollNo)}
+              {renderTwoItems('Class:', profileData.class)}
+              {renderTwoItems('Roll no.:', profileData.rollNo)}
 
-            <RenderSwitchItem />
+              <RenderSwitchItem />
+            </View>
           </View>
         </View>
-      </View>
 
-      <View style={styles.restBody}>
-        <RenderBodyItem name={'Chats'} onPress={'ChatDetailsScreen'} />
+        <View style={styles.restBody}>
+          <RenderBodyItem name={'Chats'} onPress={'Chat Details'} />
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -114,7 +116,7 @@ const ProfileScreen = props => {
 const styles = StyleSheet.create({
   mainView: {
     flex: 1,
-    marginHorizontal: dimensions.vw * 5,
+    // marginHorizontal: dimensions.vw * 5,
   },
   buttonContaier: {
     marginVertical: dimensions.vh * 2,

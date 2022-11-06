@@ -1,14 +1,11 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {useRecoilState} from 'recoil';
+import BGCarpoolInnerBottom from '../../Components/BGCarpoolInnerBottom';
 import MyButton from '../../Components/MyButton';
-import {shippingState} from '../../Recoil/atoms';
 import dimensions from '../../utilities/dimensions';
 
 const HomeScreen = props => {
-  const [shopingItems, setShopingItems] = useRecoilState(shippingState);
-
   console.log({props});
 
   const gotoScreen = screen => {
@@ -17,18 +14,19 @@ const HomeScreen = props => {
 
   return (
     <SafeAreaView style={styles.mainView}>
+      <BGCarpoolInnerBottom />
       <View style={{}}>
         <View style={styles.buttonContaier}>
           <MyButton
             name={'Student List'}
-            onPress={() => gotoScreen('StudentList')}
+            onPress={() => gotoScreen('Student List')}
           />
         </View>
 
         <View style={styles.buttonContaier}>
           <MyButton
-            name={'Student Chat'}
-            onPress={() => console.log('Pressed in Parent')}
+            name={'Chat List'}
+            onPress={() => gotoScreen('Chat List')}
           />
         </View>
       </View>
@@ -40,11 +38,11 @@ const styles = StyleSheet.create({
   mainView: {
     flexDirection: 'row',
     justifyContent: 'center',
-    height: '100%',
+    height: '80%',
     alignItems: 'center',
   },
   buttonContaier: {
-    marginVertical: dimensions.vh * 2,
+    marginVertical: dimensions.vh * 4,
   },
 });
 

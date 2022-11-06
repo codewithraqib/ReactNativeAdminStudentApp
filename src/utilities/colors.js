@@ -4,4 +4,5 @@ export default {
   thirdColor: '#377D71',
   whiteColor: '#ffffff',
   blueColor: '#0B3C7F',
+  textColor: '#464647',
 };

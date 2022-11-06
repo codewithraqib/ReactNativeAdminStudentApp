@@ -7,39 +7,33 @@ import {
   Image,
   ActivityIndicator,
   TouchableOpacity,
+  TextInput,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useRecoilState} from 'recoil';
-import apiCall from '../../api/apiCall';
 import MyInput from '../../Components/MyInput';
 import MyText from '../../Components/MyText';
-import {studentDataState} from '../../Recoil/atoms';
+import {studentDataState, chatsDataState} from '../../Recoil/atoms';
 import dimensions from '../../utilities/dimensions';
 
-const StudentList = props => {
+const ChatListScreen = props => {
   const [studentData, setStudentData] = useRecoilState(studentDataState);
-  const [loadingComplete, setLoadingComplete] = useState(false);
+  const [chatsData, setChatsData] = useRecoilState(chatsDataState);
 
-  // for api calling
-  // const [studentData, setStudentData] = useState([]);
+  let filteredUsers = [];
+
+  studentData.map(student => {
+    chatsData.map(chat => {
+      console.log(student, chat);
+      if (student.id == chat.userId) {
+        filteredUsers.push(student);
+      }
+    });
+  });
+
   const [index, setIndex] = useState(1);
-  // const [searchKey, setSearchKey] = useState('');
-  const [filteredList, setFilteredList] = useState(studentData);
-
-  //to get from api - but api data is not as per our requirements
-  // useEffect(() => {
-
-  //   apiCall({
-  //     url: `v1/user?limit=${index * 20}`,
-  //     callback: res => {
-  //       if (res && res.data && res.data.length > 0) {
-  //         setStudentData(res.data);
-  //         setFetchingData(false);
-  //         console.log('all profiles----', JSON.stringify(res.data));
-  //       }
-  //     },
-  //   });
-  // }, [index]);
+  const [loadingComplete, setLoadingComplete] = useState(false);
+  const [filteredList, setFilteredList] = useState(filteredUsers);
 
   const gotoScreen = (screen, item) => {
     props.navigation.navigate(screen, {
@@ -48,7 +42,6 @@ const StudentList = props => {
   };
 
   const loadMoreData = () => {
-    setLoadingComplete(false);
     setTimeout(() => {
       if (index < 3) {
         setIndex(index + 1);
@@ -71,7 +64,10 @@ const StudentList = props => {
 
   const renderListItem = (item, index) => {
     return (
-      <TouchableOpacity onPress={() => gotoScreen('Profile', item)} key={index}>
+      <TouchableOpacity
+        onPress={() => gotoScreen('Chat Details', item)}
+        key={index}
+      >
         <View style={styles.item}>
           <Image source={{uri: item.picture}} style={[styles.avatar]} />
 
@@ -95,13 +91,13 @@ const StudentList = props => {
   const onChange = val => {
     let key = val;
     let filteredList = [];
-    if (studentData) {
-      filteredList = studentData.filter(
+    if (filteredUsers) {
+      filteredList = filteredUsers.filter(
         item => item.firstName.includes(key) || item.lastName.includes(key),
       );
     }
 
-    console.log({filteredList});
+    // console.log({filteredList});
     setFilteredList(filteredList);
   };
   return (
@@ -144,6 +140,7 @@ const styles = StyleSheet.create({
   item: {
     padding: 10,
     width: '100%',
+    // backgroundColor: colors.primaryColor,
     marginVertical: 6,
     flexDirection: 'row',
   },
@@ -204,4 +201,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default StudentList;
+export default ChatListScreen;
