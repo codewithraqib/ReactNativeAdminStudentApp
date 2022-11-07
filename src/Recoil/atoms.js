@@ -459,73 +459,40 @@ export const studentDataState = atom({
 export const chatsDataState = atom({
   key: 'chatsDataState',
   default: [
-    {
-      id: 0,
-      userId: '60d0fe4f5311236168a109ca',
-      replies: [
-        {
-          id: 0,
-          user_role: 'USER',
-          created_at: '2022-07-13T01:33:15',
-          body:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
-        },
-        {
-          id: 1,
-          user_role: 'ADMIN',
-          created_at: '2022-08-12T01:33:15',
-          body:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
-        },
-        {
-          id: 2,
-          user_role: 'ADMIN',
-          created_at: '2022/01/09T01:33:15',
-          body:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
-        },
-        {
-          id: 3,
-          user_role: 'USER',
-          created_at: '2022/11/10T01:33:15',
-          body:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
-        },
-      ],
-    },
-    {
-      id: 1,
-      userId: '60d0fe4f5311236168a109cb',
-      replies: [
-        {
-          id: 0,
-          user_role: 'USER',
-          created_at: '2022-07-13T01:33:15',
-          body:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
-        },
-        {
-          id: 1,
-          user_role: 'ADMIN',
-          created_at: '2022-08-12T01:33:15',
-          body:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
-        },
-        {
-          id: 2,
-          user_role: 'ADMIN',
-          created_at: '2022/01/09T01:33:15',
-          body:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
-        },
-        {
-          id: 3,
-          user_role: 'USER',
-          created_at: '2022/11/10T01:33:15',
-          body:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
-        },
-      ],
-    },
+    // {
+    //   id: 0,
+    //   userId: '60d0fe4f5311236168a109ca',
+    //   timeStamp: 1667828703,
+    //   replies: [
+    //     {
+    //       id: 0,
+    //       user_role: 'USER',
+    //       created_at: '2022-07-13T01:33:15',
+    //       body:
+    //         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
+    //     },
+    //     {
+    //       id: 1,
+    //       user_role: 'ADMIN',
+    //       created_at: '2022-08-12T01:33:15',
+    //       body:
+    //         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
+    //     },
+    //     {
+    //       id: 2,
+    //       user_role: 'ADMIN',
+    //       created_at: '2022/01/09T01:33:15',
+    //       body:
+    //         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
+    //     },
+    //     {
+    //       id: 3,
+    //       user_role: 'USER',
+    //       created_at: '2022/11/10T01:33:15',
+    //       body:
+    //         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
+    //     },
+    //   ],
+    // },
   ],
 });

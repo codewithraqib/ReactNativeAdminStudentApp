@@ -10,6 +10,7 @@ import colors from '../../utilities/colors';
 import DateService from '../../utilities/dateService';
 import dimensions from '../../utilities/dimensions';
 import storageService from '../../utilities/storageService';
+import Toast from 'react-native-simple-toast';
 
 const ChatDetailsScreen = props => {
   const [allChats, setAllChats] = useRecoilState(chatsDataState);
@@ -85,16 +86,32 @@ const ChatDetailsScreen = props => {
   const sendMessage = () => {
     console.log({userData});
 
+    if (!newMessage) {
+      Toast.show('Cant sent an empty message!', Toast.LONG);
+      return;
+    }
+
     let newUserData = {
       id: null,
       userId: null,
       replies: [],
+      timeStamp: null,
     };
     if (userData) {
-      newUserData = {id: userData.id, userId: userId, replies: null};
+      newUserData = {
+        id: userData.id,
+        userId: userId,
+        replies: null,
+        timeStamp: DateService.getCurrentTimeUTC(),
+      };
       newUserData['replies'] = [...userData.replies, createAReply('USER')];
     } else {
-      newUserData = {id: allChats.length, userId: userId, replies: null};
+      newUserData = {
+        id: allChats.length,
+        userId: userId,
+        replies: null,
+        timeStamp: DateService.getCurrentTimeUTC(),
+      };
       newUserData['replies'] = [createAReply('USER')];
     }
 
@@ -108,7 +125,12 @@ const ChatDetailsScreen = props => {
   };
 
   const adminReplies = oldUserData => {
-    let newUserData = {id: oldUserData.id, userId: userId, replies: null};
+    let newUserData = {
+      id: oldUserData.id,
+      userId: userId,
+      replies: null,
+      timeStamp: DateService.getCurrentTimeUTC(),
+    };
 
     newUserData['replies'] = [...oldUserData.replies, createAReply('ADMIN')];
 
@@ -128,7 +150,11 @@ const ChatDetailsScreen = props => {
 
     storageService.setItem('allChats', JSON.stringify(newAllChats));
 
-    setAllChats(newAllChats);
+    let sortedChats = newAllChats.sort((a, b) => b.timeStamp - a.timeStamp);
+
+    console.log({sortedChats});
+
+    setAllChats(sortedChats);
   };
 
   return (

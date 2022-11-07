@@ -32,7 +32,7 @@ const App = () => {
 
   return (
     <RecoilRoot>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+      <StatusBar barStyle={isDarkMode ? 'light-content' : 'light-content'} />
       <NavigationContainer>
         <Stack.Navigator
           initialRouteName="Home"

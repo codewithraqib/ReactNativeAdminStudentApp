@@ -169,9 +169,11 @@ const styles = StyleSheet.create({
   },
   normalText: {
     fontSize: 12,
+    color: colors.blueColor,
+    fontWeight: 'bold',
   },
   restBody: {
-    marginTop: 40,
+    marginTop: 30,
   },
 
   indItem: {

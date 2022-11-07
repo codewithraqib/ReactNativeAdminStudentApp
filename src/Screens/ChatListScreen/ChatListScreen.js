@@ -22,8 +22,8 @@ const ChatListScreen = props => {
 
   let filteredUsers = [];
 
-  studentData.map(student => {
-    chatsData.map(chat => {
+  chatsData.map(chat => {
+    studentData.map(student => {
       // console.log(student, chat);
       if (student.id == chat.userId) {
         filteredUsers.push(student);
@@ -34,6 +34,8 @@ const ChatListScreen = props => {
   const [index, setIndex] = useState(1);
   const [loadingComplete, setLoadingComplete] = useState(false);
   const [filteredList, setFilteredList] = useState(filteredUsers);
+
+  console.log({filteredList});
 
   const gotoScreen = (screen, item) => {
     props.navigation.navigate(screen, {
@@ -103,31 +105,44 @@ const ChatListScreen = props => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.listContainer}>
-        <View style={styles.topBar}>
-          <MyInput
-            type={'default'}
-            onTextChange={text => onChange(text)}
-            placeholder={'search'}
-            onBlur={() => {}}
+        {filteredList && filteredList.length > 0 && (
+          <View style={styles.topBar}>
+            <MyInput
+              type={'default'}
+              onTextChange={text => onChange(text)}
+              placeholder={'search'}
+              onBlur={() => {}}
+            />
+          </View>
+        )}
+
+        {filteredList && filteredList.length > 0 ? (
+          <FlatList
+            // contentContainerStyle={{minHeight: '100%'}}
+            style={{
+              maxHeight:
+                Platform.OS === 'android'
+                  ? dimensions.vh * 78
+                  : dimensions.vh * 74,
+            }}
+            keyExtractor={(item, index) => index}
+            data={filteredList.slice(0, index * 20)}
+            renderItem={({item, index}) => renderListItem(item, index)}
+            onEndReached={loadMoreData}
+            onEndReachedThreshold={0.1}
+            ItemSeparatorComponent={() => <View style={styles.separator} />}
+            ListFooterComponent={renderFooter()}
+            //Adding Load More button as footer component
           />
-        </View>
-        <FlatList
-          // contentContainerStyle={{minHeight: '100%'}}
-          style={{
-            maxHeight:
-              Platform.OS === 'android'
-                ? dimensions.vh * 78
-                : dimensions.vh * 74,
-          }}
-          keyExtractor={(item, index) => index}
-          data={filteredList.slice(0, index * 20)}
-          renderItem={({item, index}) => renderListItem(item, index)}
-          onEndReached={loadMoreData}
-          onEndReachedThreshold={0.1}
-          ItemSeparatorComponent={() => <View style={styles.separator} />}
-          ListFooterComponent={renderFooter()}
-          //Adding Load More button as footer component
-        />
+        ) : (
+          <View style={styles.noMessages}>
+            <MyText center blue bold>
+              {
+                ' No messages yet,\n\n From Student list select a student to start chat with'
+              }
+            </MyText>
+          </View>
+        )}
       </View>
     </SafeAreaView>
   );
@@ -204,6 +219,12 @@ const styles = StyleSheet.create({
   },
   topBar: {
     marginTop: 0,
+  },
+  noMessages: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '90%',
   },
 });
 
