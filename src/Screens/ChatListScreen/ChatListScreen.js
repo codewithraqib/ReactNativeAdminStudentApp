@@ -108,7 +108,7 @@ const ChatListScreen = props => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.listContainer}>
-        {filteredList && filteredList.length > 0 && (
+        {originalList && originalList.length > 0 && (
           <View style={styles.topBar}>
             <MyInput
               type={'default'}
@@ -119,7 +119,7 @@ const ChatListScreen = props => {
           </View>
         )}
 
-        {filteredList && filteredList.length > 0 ? (
+        {originalList && originalList.length > 0 ? (
           <FlatList
             // contentContainerStyle={{minHeight: '100%'}}
             style={{
