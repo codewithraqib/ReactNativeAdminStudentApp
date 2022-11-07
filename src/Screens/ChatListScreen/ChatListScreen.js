@@ -33,6 +33,7 @@ const ChatListScreen = props => {
 
   const [index, setIndex] = useState(1);
   const [loadingComplete, setLoadingComplete] = useState(false);
+  const [originalList, setOriginalList] = useState(filteredUsers);
   const [filteredList, setFilteredList] = useState(filteredUsers);
 
   console.log({filteredList});
@@ -91,11 +92,13 @@ const ChatListScreen = props => {
   };
 
   const onChange = val => {
-    let key = val;
+    let key = val.toLowerCase();
     let filteredList = [];
     if (filteredUsers) {
-      filteredList = filteredUsers.filter(
-        item => item.firstName.includes(key) || item.lastName.includes(key),
+      filteredList = originalList.filter(
+        item =>
+          item.firstName.toLowerCase().includes(key) ||
+          item.lastName.toLowerCase().includes(key),
       );
     }
 

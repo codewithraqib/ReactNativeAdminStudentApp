@@ -94,11 +94,13 @@ const StudentList = props => {
   };
 
   const onChange = val => {
-    let key = val;
+    let key = val.toLowerCase();
     let filteredList = [];
     if (studentData) {
       filteredList = studentData.filter(
-        item => item.firstName.includes(key) || item.lastName.includes(key),
+        item =>
+          item.firstName.toLowerCase().includes(key) ||
+          item.lastName.toLowerCase().includes(key),
       );
     }
 
