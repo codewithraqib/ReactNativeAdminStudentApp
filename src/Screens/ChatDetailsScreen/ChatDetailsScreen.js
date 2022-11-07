@@ -142,8 +142,18 @@ const ChatDetailsScreen = props => {
   const updateMessgaeStore = newUserData => {
     let newAllChats = [...allChats];
 
+    let location = null;
     if (userData && userData.userId) {
-      newAllChats.splice(userData.id, 1, newUserData);
+      allChats.forEach((chat, index) => {
+        console.log({chat});
+
+        if (chat.userId === userId) {
+          location = index;
+        }
+      });
+
+      console.log({location});
+      newAllChats.splice(location, 1, newUserData);
     } else {
       newAllChats.push(newUserData);
     }
@@ -152,7 +162,7 @@ const ChatDetailsScreen = props => {
 
     let sortedChats = newAllChats.sort((a, b) => b.timeStamp - a.timeStamp);
 
-    console.log({sortedChats});
+    // console.log({sortedChats});
 
     setAllChats(sortedChats);
   };
