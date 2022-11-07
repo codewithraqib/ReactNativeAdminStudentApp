@@ -1,4 +1,4 @@
-package com.adminstudentapp;
+package com.codewithraqib.admin_student_app;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

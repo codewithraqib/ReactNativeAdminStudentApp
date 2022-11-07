@@ -1,4 +1,4 @@
-package com.adminstudentapp.newarchitecture.modules;
+package com.codewithraqib.admin_student_app.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;

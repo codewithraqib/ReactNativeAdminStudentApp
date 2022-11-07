@@ -1,4 +1,4 @@
-package com.adminstudentapp.newarchitecture;
+package com.codewithraqib.admin_student_app.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.EmptyReactNativeConfig;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.adminstudentapp.BuildConfig;
-import com.adminstudentapp.newarchitecture.components.MainComponentsRegistry;
-import com.adminstudentapp.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.codewithraqib.admin_student_app.BuildConfig;
+import com.codewithraqib.admin_student_app.newarchitecture.components.MainComponentsRegistry;
+import com.codewithraqib.admin_student_app.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

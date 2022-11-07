@@ -136,7 +136,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.adminstudentapp"
+        applicationId "com.codewithraqib.admin_student_app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

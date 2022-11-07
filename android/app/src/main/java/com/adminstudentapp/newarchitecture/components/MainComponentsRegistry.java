@@ -1,4 +1,4 @@
-package com.adminstudentapp.newarchitecture.components;
+package com.codewithraqib.admin_student_app.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;
