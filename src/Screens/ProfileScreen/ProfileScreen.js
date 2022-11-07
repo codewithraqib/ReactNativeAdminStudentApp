@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   Switch,
+  Platform,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useRecoilState} from 'recoil';
@@ -136,7 +137,8 @@ const styles = StyleSheet.create({
     elevation: 2,
     backgroundColor: '#fff',
     position: 'relative',
-    marginTop: 20,
+    marginTop:
+      Platform.OS === 'android' ? dimensions.vh * 8 : dimensions.vh * 2,
   },
   avatarContainer: {
     flexDirection: 'column',

@@ -134,6 +134,7 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
+
     defaultConfig {
         applicationId "com.adminstudentapp"
         minSdkVersion rootProject.ext.minSdkVersion

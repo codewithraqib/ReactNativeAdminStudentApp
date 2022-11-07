@@ -7,6 +7,7 @@ import {
   Image,
   ActivityIndicator,
   TouchableOpacity,
+  Platform,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useRecoilState} from 'recoil';
@@ -116,7 +117,13 @@ const StudentList = props => {
           />
         </View>
         <FlatList
-          contentContainerStyle={{minHeight: '100%'}}
+          // contentContainerStyle={{minHeight: '80%'}}
+          style={{
+            maxHeight:
+              Platform.OS === 'android'
+                ? dimensions.vh * 78
+                : dimensions.vh * 74,
+          }}
           keyExtractor={(item, index) => index}
           data={filteredList.slice(0, index * 20)}
           renderItem={({item, index}) => renderListItem(item, index)}
@@ -200,7 +207,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ccc',
   },
   topBar: {
-    marginTop: -40,
+    marginTop: 0,
   },
 });
 

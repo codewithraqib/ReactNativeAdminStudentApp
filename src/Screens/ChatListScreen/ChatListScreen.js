@@ -24,7 +24,7 @@ const ChatListScreen = props => {
 
   studentData.map(student => {
     chatsData.map(chat => {
-      console.log(student, chat);
+      // console.log(student, chat);
       if (student.id == chat.userId) {
         filteredUsers.push(student);
       }
@@ -112,7 +112,13 @@ const ChatListScreen = props => {
           />
         </View>
         <FlatList
-          contentContainerStyle={{minHeight: '100%'}}
+          // contentContainerStyle={{minHeight: '100%'}}
+          style={{
+            maxHeight:
+              Platform.OS === 'android'
+                ? dimensions.vh * 78
+                : dimensions.vh * 74,
+          }}
           keyExtractor={(item, index) => index}
           data={filteredList.slice(0, index * 20)}
           renderItem={({item, index}) => renderListItem(item, index)}
@@ -197,7 +203,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ccc',
   },
   topBar: {
-    marginTop: -40,
+    marginTop: 0,
   },
 });
 

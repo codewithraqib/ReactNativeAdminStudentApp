@@ -12,7 +12,6 @@
 import React from 'react';
 import {StatusBar, StyleSheet, useColorScheme} from 'react-native';
 
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 import HomeScreen from './Screens/HomeScreen/HomeScreen';
 import {RecoilRoot} from 'recoil';
 import {NavigationContainer} from '@react-navigation/native';
@@ -21,18 +20,15 @@ import StudentList from './Screens/StudentList/StudentList';
 import ProfileScreen from './Screens/ProfileScreen/ProfileScreen';
 import ChatDetailsScreen from './Screens/ChatDetailsScreen/ChatDetailsScreen';
 import ChatListScreen from './Screens/ChatListScreen/ChatListScreen';
-// import {enableScreens} from 'react-native-screens';
-
-// enableScreens();
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+  // const backgroundStyle = {
+  //   backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  // };
 
   return (
     <RecoilRoot>

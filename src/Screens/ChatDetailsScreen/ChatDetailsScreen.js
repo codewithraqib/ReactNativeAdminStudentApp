@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {View, StyleSheet, FlatList} from 'react-native';
+import {View, StyleSheet, FlatList, Platform} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useRecoilState} from 'recoil';
 import MyInput from '../../Components/MyInput';
@@ -9,6 +9,7 @@ import {chatsDataState} from '../../Recoil/atoms';
 import colors from '../../utilities/colors';
 import DateService from '../../utilities/dateService';
 import dimensions from '../../utilities/dimensions';
+import storageService from '../../utilities/storageService';
 
 const ChatDetailsScreen = props => {
   const [allChats, setAllChats] = useRecoilState(chatsDataState);
@@ -119,11 +120,13 @@ const ChatDetailsScreen = props => {
   const updateMessgaeStore = newUserData => {
     let newAllChats = [...allChats];
 
-    if (userData && userData.id) {
+    if (userData && userData.userId) {
       newAllChats.splice(userData.id, 1, newUserData);
     } else {
       newAllChats.push(newUserData);
     }
+
+    storageService.setItem('allChats', JSON.stringify(newAllChats));
 
     setAllChats(newAllChats);
   };
@@ -136,7 +139,12 @@ const ChatDetailsScreen = props => {
             keyExtractor={(item, index) => index}
             data={userData.replies}
             renderItem={({item, index}) => renderReplies(item, index)}
-            style={{maxHeight: dimensions.vh * 74}}
+            style={{
+              maxHeight:
+                Platform.OS === 'android'
+                  ? dimensions.vh * 78
+                  : dimensions.vh * 74,
+            }}
             ref={listRef}
             onContentSizeChange={() => {
               listRef.current.scrollToEnd();
